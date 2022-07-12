@@ -414,7 +414,7 @@ def _mirror(bot, message, isZip=False, extract=False, isQbit=False, isLeech=Fals
             uname = f'<a href="tg://user?id={message.from_user.id}">{message.from_user.first_name}</a>'
             botstart = f"http://t.me/{b_uname}"
             buttons.buildbutton("Bro Start Me", f"{botstart}")
-            startwarn = f"Dear {uname},\n\n<b>Bro I found that you haven't started me in Private Chat</b>\n\n" \
+            startwarn = f"Bro{uname},\n\n<b> I found that you haven't started me in Private Chat</b>\n\n" \
                         f"From now Bro i will give link and leeched files in Private and log channel"
             message = sendMarkup(startwarn, bot, message, InlineKeyboardMarkup(buttons.build_menu(2)))
             Thread(target=auto_delete_message, args=(bot, message, message)).start()
