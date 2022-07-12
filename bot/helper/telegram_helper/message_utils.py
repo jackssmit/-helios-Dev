@@ -118,7 +118,7 @@ def delete_all_messages():
             except Exception as e:
                 LOGGER.error(str(e))
 def auto_delete_upload_message(bot, cmd_message: Message, bot_message: Message):
-    if cmd_message.chat.type == 'private':
+    if cmd_message.chat.type == 'P':
         pass
     elif AUTO_DELETE_UPLOAD_MESSAGE_DURATION != -1:
         sleep(AUTO_DELETE_UPLOAD_MESSAGE_DURATION)
