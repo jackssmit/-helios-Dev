@@ -65,7 +65,7 @@ def cancell_all_buttons(update, context):
     buttons.sbutton("Cloning", "canall clone")
     buttons.sbutton("All", "canall all")
     button = InlineKeyboardMarkup(buttons.build_menu(2))
-    sendMarkup('Choose tasks to cancel.', context.bot, update.message, button)
+    sendMarkup('Bro Choose tasks to cancel.', context.bot, update.message, button)
 
 def cancel_all_update(update, context):
     query = update.callback_query
@@ -77,7 +77,7 @@ def cancel_all_update(update, context):
         query.message.delete()
         cancel_all(data[1])
     else:
-        query.answer(text="You don't have permission to use these buttons!", show_alert=True)
+        query.answer(text="Man You don't have permission to use these buttons!", show_alert=True)
 
 
 
