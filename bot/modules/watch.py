@@ -30,9 +30,9 @@ def _watch(bot, message, isZip=False, isLeech=False, multi=0):
             b_uname = bot_d.username
             uname = f'<a href="tg://user?id={message.from_user.id}">{message.from_user.first_name}</a>'
             botstart = f"http://t.me/{b_uname}"
-            buttons.buildbutton("Click Here to Start Me", f"{botstart}")
-            startwarn = f"Dear {uname},\n\n<b>I found that you haven't started me in PM (Private Chat) yet.</b>\n\n" \
-                        f"From now on i will give link and leeched files in PM and log channel only"
+            buttons.buildbutton("Bro Start Me", f"{botstart}")
+            startwarn = f"Dear {uname},\n\n<b>Bro I found that you haven't started me in Private Chat </b>\n\n" \
+                        f"From now bro i will give links and leeched files in Private Chat and log channel"
             message = sendMarkup(startwarn, bot, message, InlineKeyboardMarkup(buttons.build_menu(2)))
             Thread(target=auto_delete_message, args=(bot, message, message)).start()
             return
@@ -117,7 +117,7 @@ def _watch(bot, message, isZip=False, isLeech=False, multi=0):
         buttons.sbutton("Cancel", f"qu {msg_id} cancel")
         YTBUTTONS = InlineKeyboardMarkup(buttons.build_menu(3))
         listener_dict[msg_id] = [listener, user_id, link, name, YTBUTTONS, args]
-        bmsg = sendMarkup('Choose Playlist Videos Quality:', bot, message, YTBUTTONS)
+        bmsg = sendMarkup('bro Choose Playlist Videos Quality:', bot, message, YTBUTTONS)
     else:
         formats = result.get('formats')
         formats_dict = {}
@@ -166,7 +166,7 @@ def _watch(bot, message, isZip=False, isLeech=False, multi=0):
         buttons.sbutton("Cancel", f"qu {msg_id} cancel")
         YTBUTTONS = InlineKeyboardMarkup(buttons.build_menu(2))
         listener_dict[msg_id] = [listener, user_id, link, name, YTBUTTONS, args, formats_dict]
-        bmsg = sendMarkup('Choose Video Quality:', bot, message, YTBUTTONS)
+        bmsg = sendMarkup('bro Choose Video Quality:', bot, message, YTBUTTONS)
 
     Thread(target=_auto_cancel, args=(bmsg, msg_id)).start()
     Thread(target=auto_delete_upload_message, args=(bot, message, bmsg)).start()
@@ -235,10 +235,10 @@ def select_format(update, context):
     try:
         task_info = listener_dict[task_id]
     except:
-        return editMessage("This is an old task", msg)
+        return editMessage("man This is an old task", msg)
     uid = task_info[1]
     if user_id != uid and not CustomFilters._owner_query(user_id):
-        return query.answer(text="This task is not for you!", show_alert=True)
+        return query.answer(text="man This task is not for you!", show_alert=True)
     elif data[2] == "dict":
         query.answer()
         qual = data[3]
@@ -246,7 +246,7 @@ def select_format(update, context):
         return
     elif data[2] == "back":
         query.answer()
-        return editMessage('Choose Video Quality:', msg, task_info[4])
+        return editMessage('bro Choose Video Quality:', msg, task_info[4])
     elif data[2] == "audio":
         query.answer()
         if len(data) == 4:
@@ -257,7 +257,7 @@ def select_format(update, context):
         return
     elif data[2] == "cancel":
         query.answer()
-        editMessage('Task has been cancelled.', msg)
+        editMessage('dude Task has been cancelled.', msg)
     else:
         query.answer()
         listener = task_info[0]
@@ -281,7 +281,7 @@ def _auto_cancel(msg, msg_id):
     sleep(120)
     try:
         del listener_dict[msg_id]
-        editMessage('Timed out! Task has been cancelled.', msg)
+        editMessage('Timed out! bro Task has been cancelled.', msg)
     except:
         pass
 
