@@ -38,18 +38,18 @@ def stats(update, context):
     mem_t = get_readable_file_size(memory.total)
     mem_a = get_readable_file_size(memory.available)
     mem_u = get_readable_file_size(memory.used)
-    stats = f'<b>Commit Date:</b> {last_commit}\n\n'\
-            f'<b>Bot Uptime:</b> {currentTime}\n\n'\
-            f'<b>Total Disk Space:</b> {total}\n'\
-            f'<b>Used:</b> {used} | <b>Free:</b> {free}\n\n'\
-            f'<b>Up:</b> {sent} | '\
-            f'<b>Down:</b> {recv}\n\n'\
-            f'<b>CPU:</b> {cpuUsage}% | '\
-            f'<b>RAM:</b> {mem_p}% | '\
-            f'<b>DISK:</b> {disk}%\n\n'\
-            f'<b>Total Memory:</b> {mem_t}\n'\
-            f'<b>Free:</b> {mem_a} | '\
-            f'<b>Used:</b> {mem_u}\n\n'
+    stats = f'<b>Commit Date - </b> {last_commit}\n\n'\
+            f'<b>Bot Uptime - </b> {currentTime}\n\n'\
+            f'<b>Total Disk Space - </b> {total}\n'\
+            f'<b>Used - </b> {used} | <b> - Free - </b> {free}\n\n'\
+            f'<b>Up - </b> {sent} | '\
+            f'<b>Down - </b> {recv}\n\n'\
+            f'<b>CPU - </b> {cpuUsage}  | '\
+            f'<b>RAM - </b> {mem_p}  | '\
+            f'<b>DISK - </b> {disk} \n\n'\
+            f'<b>Total Memory - </b> {mem_t}\n'\
+            f'<b>Free - </b> {mem_a} | '\
+            f'<b>Used - </b> {mem_u}\n\n'
     heroku = getHerokuDetails(HEROKU_API_KEY, HEROKU_APP_NAME)
     if heroku: stats += heroku
     sendMessage(stats, context.bot, update.message)
@@ -57,17 +57,16 @@ def stats(update, context):
 
 def start(update, context):
     buttons = ButtonMaker()
-    buttons.buildbutton("Repo", "https://github.com/arshsisodiya/helios-mirror")
-    buttons.buildbutton("Support Group", "https://t.me/mirrorsociety")
+    buttons.buildbutton("Dev", "https://t.me/jackssmit")
     reply_markup = InlineKeyboardMarkup(buttons.build_menu(2))
     if CustomFilters.authorized_user(update) or CustomFilters.authorized_chat(update):
         start_string = f'''
-This bot can mirror all your links to Google Drive!
+This bot can mirror all your links to Google Drive plus CF!
 Type /{BotCommands.HelpCommand} to get a list of available commands
 '''
         sendMarkup(start_string, context.bot, update.message, reply_markup)
     else:
-        sendMarkup('Not Authorized user, deploy your own mirror-leech bot', context.bot, update.message, reply_markup)
+        sendMarkup('Bro Not Authorized user', context.bot, update.message, reply_markup)
 
 def restart(update, context):
     restart_message = sendMessage("Restarting...", context.bot, update.message)
@@ -189,16 +188,16 @@ sudo_help_string = f'''<br><br><b> Sudo/Owner Only Commands </b><br><br>
 <b>/{BotCommands.RmleechlogCommand}</b>: Remove Leech Log
 '''
 help_string = f'''
-Hei, Need Help!!
+Bro, Need Any Help!!
 '''
 help = telegraph.create_page(
-        title='Helios-Mirror Help',
+        title='Dumb L⚡️ech Help Page',
         content=help_string_telegraph + sudo_help_string,
     )["path"]
 
 def bot_help(update, context):
     button = ButtonMaker()
-    button.buildbutton("Click Here", f"https://telegra.ph/{help}")
+    button.buildbutton("Click Me Bro", f"https://telegra.ph/{help}")
     reply_markup = InlineKeyboardMarkup(button.build_menu(1))
     sendMarkup(help_string, context.bot, update.message, reply_markup)
 
