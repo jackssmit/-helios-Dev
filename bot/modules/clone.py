@@ -32,8 +32,8 @@ def _clone(message, bot, multi=0):
             b_uname = bot_d.username
             uname = f'<a href="tg://user?id={message.from_user.id}">{message.from_user.first_name}</a>'
             botstart = f"http://t.me/{b_uname}"
-            buttons.buildbutton("Click Here to Start Me", f"{botstart}")
-            startwarn = f"Dear {uname},\n\n<b>I found that you haven't started me in PM (Private Chat) yet.</b>\n\nFrom now on i will give link and leeched files in PM and log channel only"
+            buttons.buildbutton("Bro Start Me", f"{botstart}")
+            startwarn = f"Bro {uname},\n\n<b>I found that you haven't started me in Private Chat</b>\n\nFrom now Bro i will give link and leeched files in Private and log channel"
             message = sendMarkup(startwarn, bot, message, InlineKeyboardMarkup(buttons.build_menu(2)))
             Thread(target=auto_delete_message, args=(bot, message, message)).start()
             return
@@ -100,7 +100,7 @@ def _clone(message, bot, multi=0):
             sleep(4)
             Thread(target=_clone, args=(nextmsg, bot, multi)).start()
         if files <= 20:
-            msg = sendMessage(f"Cloning: <code>{link}</code>", bot, message)
+            msg = sendMessage(f"Cloning - <code>{link}</code>", bot, message)
             result, button = gd.clone(link)
             deleteMessage(bot, msg)
         else:
@@ -128,13 +128,13 @@ def _clone(message, bot, multi=0):
             sendMessage(f"{tag} {result}", bot, message)
         else:
             msg = sendMarkup(result + cc, bot, message, button)
-            LOGGER.info(f'Cloning Done: {name}')
+            LOGGER.info(f'Cloning Done - {name}')
             Thread(target=auto_delete_upload_message, args=(bot, message, msg)).start()
         if is_gdtot:
             gd.deletefile(link)
         elif is_appdrive:
             if apdict.get('link_type') == 'login':
-                LOGGER.info(f"Deleting: {link}")
+                LOGGER.info(f"Deleting - {link}")
                 gd.deletefile(link)
         if MIRROR_LOGS:
             try:
@@ -142,7 +142,7 @@ def _clone(message, bot, multi=0):
                     bot.sendMessage(chat_id=chatid, text=result + cc, reply_markup=button, parse_mode=ParseMode.HTML)
             except Exception as e:
                 LOGGER.warning(e)
-        if BOT_PM and message.chat.type != 'private':
+        if BOT_PM and message.chat.type != 'P':
             try:
                 bot.sendMessage(message.from_user.id, text=result, reply_markup=button,
                                 parse_mode=ParseMode.HTML)
