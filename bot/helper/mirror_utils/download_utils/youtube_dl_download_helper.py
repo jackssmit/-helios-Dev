@@ -70,11 +70,11 @@ class YoutubeDLHelper:
     def __onDownloadProgress(self, d):
         self.__downloading = True
         if self.__is_cancelled:
-            raise ValueError("Cancelling...")
+            raise ValueError("File Cancelling...")
         if d['status'] == "finished":
             if self.is_playlist:
                 self._last_downloaded = 0
-        elif d['status'] == "downloading":
+        elif d['status'] == "YouTube Engine on By Ai":
             with self.__resource_lock:
                 self.__download_speed = d['speed']
                 if self.is_playlist:
@@ -158,7 +158,7 @@ class YoutubeDLHelper:
                 raise ValueError
             self.__onDownloadComplete()
         except ValueError:
-            self.__onDownloadError("Download Stopped by User!")
+            self.__onDownloadError("Bro Your Processing Is Stop !")
 
     def add_download(self, link, path, name, qual, playlist, args):
         if playlist:
@@ -174,7 +174,7 @@ class YoutubeDLHelper:
                 rate = 320
             self.opts['postprocessors'] = [{'key': 'FFmpegExtractAudio','preferredcodec': 'mp3','preferredquality': f'{rate}'}]
         self.opts['format'] = qual
-        LOGGER.info(f"Downloading with YT-DLP: {link}")
+        LOGGER.info(f"YouTube Engine Processing - {link}")
         self.extractMetaData(link, name, args)
         if self.__is_cancelled:
             return
@@ -194,7 +194,7 @@ class YoutubeDLHelper:
         self.__is_cancelled = True
         LOGGER.info(f"Cancelling Download: {self.name}")
         if not self.__downloading:
-            self.__onDownloadError("Download Cancelled by User!")
+            self.__onDownloadError("Bro Your Processing Is Stop !")
 
     def __set_args(self, args):
         args = args.split('|')
