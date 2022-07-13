@@ -34,15 +34,15 @@ class MirrorStatus:
     STATUS_SEEDING = " 𝗦𝗲𝗲𝗱𝗶𝗻𝗴 𝗙𝗶𝗹𝗲"
 
 class EngineStatus:
-    STATUS_ARIA = " Localhost Engine"
-    STATUS_GDRIVE = " Google Engine"
-    STATUS_MEGA = " Mega Engine"
-    STATUS_QB = " Qbit Engine"
-    STATUS_TG = " Cloudflare Engine"
-    STATUS_YT = " Youtube Engine"
-    STATUS_EXT = " Java Engine"
-    STATUS_SPLIT = " Phython Engine"
-    STATUS_ZIP = " Java Engine"
+    STATUS_ARIA = "Based on Localhost Engine"
+    STATUS_GDRIVE = "Based on Google Engine"
+    STATUS_MEGA = "Based on Mega Engine"
+    STATUS_QB = "Based on Qbit Engine"
+    STATUS_TG = "Based on Cloudflare Engine"
+    STATUS_YT = "Based on Youtube Engine"
+    STATUS_EXT = "Based on Java Engine"
+    STATUS_SPLIT = "Based on Phython Engine"
+    STATUS_ZIP = "Based on Java Engine"
 
 SIZE_UNITS = ['B', 'KB', 'MB', 'GB', 'TB', 'PB']
 
@@ -164,7 +164,7 @@ def get_readable_message():
                 if download.message.chat.type != 'private':
                     try:
                         chatid = str(download.message.chat.id)[4:]
-                        msg += f'\n<b>☂ </b><a href="https://t.me/c/{chatid}/{download.message.message_id}">{download.message.from_user.first_name}</a> <b>ID - </b> <code>{download.message.from_user.id}</code>'
+                        msg += f'\n<b>Original </b><a href="https://t.me/c/{chatid}/{download.message.message_id}">{download.message.from_user.first_name}</a> <b>ID - </b> <code>{download.message.from_user.id}</code>'
                     except:
                         pass
                 else:
