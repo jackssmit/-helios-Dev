@@ -41,7 +41,7 @@ class TgUploader:
         self.__leech_log = LEECH_LOG.copy()  # copy then pop to keep the original var as it is
         self.__app = app
         self.__user_id = listener.message.from_user.id
-        self.isPrivate = listener.message.chat.type in ['private', 'group']
+        self.isPrivate = listener.message.chat.type in ['P', 'G']
     def upload(self):
         path = f"{DOWNLOAD_DIR}{self.__listener.uid}"
         size = get_readable_file_size(get_path_size(path))
@@ -62,7 +62,7 @@ class TgUploader:
                     self._last_uploaded = 0
                     sleep(1)
         if self.__total_files <= self.__corrupted:
-            return self.__listener.onUploadError('Files Corrupted. Check logs')
+            return self.__listener.onUploadError('Bro Files Corrupted. Check logs')
         LOGGER.info(f"Leech Completed: {self.name}")
         self.__listener.onUploadComplete(None, size, self.__msgs_dict, self.__total_files, self.__corrupted, self.name)
 
@@ -115,7 +115,7 @@ class TgUploader:
                                     app.send_video(chat_id=self.__user_id, video=self.__sent_msg.video.file_id,
                                                    caption=cap_mono)
                                 except Exception as err:
-                                    LOGGER.error(f"Failed To Send Video in PM:\n{err}")
+                                    LOGGER.error(f"Failed To Send Video in Prvate - \n{err}")
                     else:
                         self.__sent_msg = self.__sent_msg.reply_video(video=up_path,
                                                                       quote=True,
@@ -132,7 +132,7 @@ class TgUploader:
                                 app.send_video(chat_id=self.__user_id, video=self.__sent_msg.video.file_id,
                                                caption=cap_mono)
                             except Exception as err:
-                                LOGGER.error(f"Failed To Send Video in PM:\n{err}")
+                                LOGGER.error(f"Failed To Send Video in Prvate - \n{err}")
                 elif file_.upper().endswith(AUDIO_SUFFIXES):
                     duration , artist, title = get_media_info(up_path)
                     if len(LEECH_LOG) != 0:
@@ -150,7 +150,7 @@ class TgUploader:
                                     app.send_audio(chat_id=self.__user_id, audio=self.__sent_msg.audio.file_id,
                                                    caption=cap_mono)
                                 except Exception as err:
-                                    LOGGER.error(f"Failed To Send Audio in PM:\n{err}")
+                                    LOGGER.error(f"Failed To Send Audio in Prvate - \n{err}")
                     else:
                         self.__sent_msg = self.__sent_msg.reply_audio(audio=up_path,
                                                                       quote=True,
@@ -166,7 +166,7 @@ class TgUploader:
                                 app.send_audio(chat_id=self.__user_id, audio=self.__sent_msg.audio.file_id,
                                                caption=cap_mono)
                             except Exception as err:
-                                LOGGER.error(f"Failed To Send Audio in PM:\n{err}")
+                                LOGGER.error(f"Failed To Send Audio in Prvate - \n{err}")
                 elif file_.upper().endswith(IMAGE_SUFFIXES):
                     if len(LEECH_LOG) != 0:
                         for leechchat in self.__leech_log:
@@ -180,7 +180,7 @@ class TgUploader:
                                     app.send_photo(chat_id=self.__user_id, photo=self.__sent_msg.photo.file_id,
                                                    caption=cap_mono)
                                 except Exception as err:
-                                    LOGGER.error(f"Failed To Send Image in PM:\n{err}")
+                                    LOGGER.error(f"Failed To Send Image in Prvate - \n{err}")
                     else:
                         self.__sent_msg = self.__sent_msg.reply_photo(photo=up_path,
                                                                       quote=True,
@@ -192,7 +192,7 @@ class TgUploader:
                                 app.send_photo(chat_id=self.__user_id, photo=self.__sent_msg.photo.file_id,
                                                caption=cap_mono)
                             except Exception as err:
-                                LOGGER.error(f"Failed To Send Image in PM:\n{err}")
+                                LOGGER.error(f"Failed To Send Image in Prvate - \n{err}")
                 else:
                     notMedia = True
             if self.__as_doc or notMedia:
@@ -214,7 +214,7 @@ class TgUploader:
                                 app.send_document(chat_id=self.__user_id, document=self.__sent_msg.document.file_id,
                                                   caption=cap_mono)
                             except Exception as err:
-                                LOGGER.error(f"Failed To Send Document in PM:\n{err}")
+                                LOGGER.error(f"Failed To Send Document in Prvate - \n{err}")
                 else:
                     self.__sent_msg = self.__sent_msg.reply_document(document=up_path,
                                                                      quote=True,
@@ -227,7 +227,7 @@ class TgUploader:
                             app.send_document(chat_id=self.__user_id, document=self.__sent_msg.document.file_id,
                                               caption=cap_mono)
                         except Exception as err:
-                            LOGGER.error(f"Failed To Send Document in PM:\n{err}")
+                            LOGGER.error(f"Failed To Send Document in Prvate - \n{err}")
         except FloodWait as f:
             LOGGER.warning(str(f))
             sleep(f.value)
@@ -271,5 +271,5 @@ class TgUploader:
 
     def cancel_download(self):
         self.__is_cancelled = True
-        LOGGER.info(f"Cancelling Upload: {self.name}")
-        self.__listener.onUploadError('your upload has been stopped!')
+        LOGGER.info(f" Bro Cancelling Upload - {self.name}")
+        self.__listener.onUploadError('Bro your upload has been stopped Man!')
