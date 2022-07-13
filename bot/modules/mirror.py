@@ -217,7 +217,7 @@ class MirrorListener:
                     pass
         if not self.isPrivate and INCOMPLETE_TASK_NOTIFIER and DB_URI is not None:
             DbManger().rm_complete_task(self.message.link)
-        msg = f"<b>File - </b><code>{escape(name)}</code>\n\n<b>Size - </b>{size}"
+        msg = f"<b>◉ - </b><code>{escape(name)}</code>\n\n<b>Size - </b>{size}"
         if self.isLeech:
             if SOURCE_LINK is True:
                 try:
@@ -227,9 +227,9 @@ class MirrorListener:
                         title='Dumb L⚡️ech Original',
                         content=source_link,
                     )["path"]
-                        buttons.buildbutton(f" O ", f"https://telegra.ph/{link}")
+                        buttons.buildbutton(f" Original ", f"https://telegra.ph/{link}")
                     else:
-                        buttons.buildbutton(f" O ", source_link)
+                        buttons.buildbutton(f" Original ", source_link)
                 except Exception as e:
                     LOGGER.warning(e)
                 pass
@@ -243,9 +243,9 @@ class MirrorListener:
                                     title='Dumb L⚡️ech Original',
                                     content=source_link,
                                 )["path"]
-                                buttons.buildbutton(f" O ", f"https://telegra.ph/{link}")
+                                buttons.buildbutton(f" Original ", f"https://telegra.ph/{link}")
                             else:
-                                buttons.buildbutton(f" O ", source_link)
+                                buttons.buildbutton(f" Original ", source_link)
                     except Exception as e:
                         LOGGER.warning(e)
                         pass
@@ -275,11 +275,11 @@ class MirrorListener:
             msg += f'\n\n<b>Type - </b>{typ}'
             if ospath.isdir(f'{DOWNLOAD_DIR}{self.uid}/{name}'):
                 msg += f'\n<b>SubFolders - </b>{folders}'
-                msg += f'\n<b>Files - </b>{files}'
+                msg += f'\n<b>◉ - </b>{files}'
             msg += f'\n\n<b>Request By - </b>{self.tag}'
             buttons = ButtonMaker()
             link = short_url(link)
-            buttons.buildbutton(" G ", link)
+            buttons.buildbutton("Google", link)
             LOGGER.info(f'Done {name}')
             if INDEX_URL is not None:
                 url_path = rutils.quote(f'{name}')
@@ -287,14 +287,14 @@ class MirrorListener:
                 if ospath.isdir(f'{DOWNLOAD_DIR}/{self.uid}/{name}'):
                     share_url += '/'
                     share_url = short_url(share_url)
-                    buttons.buildbutton(" C-F ", share_url)
+                    buttons.buildbutton(" Cloudflare ", share_url)
                 else:
                     share_url = short_url(share_url)
-                    buttons.buildbutton(" C-F ", share_url)
+                    buttons.buildbutton(" Cloudflare ", share_url)
                     if VIEW_LINK:
                         share_urls = f'{INDEX_URL}/{url_path}?a=view'
                         share_urls = short_url(share_urls)
-                        buttons.buildbutton(" C ", share_urls)
+                        buttons.buildbutton(" Cloud ", share_urls)
             if BUTTON_FOUR_NAME is not None and BUTTON_FOUR_URL is not None:
                 buttons.buildbutton(f"{BUTTON_FOUR_NAME}", f"{BUTTON_FOUR_URL}")
             if BUTTON_FIVE_NAME is not None and BUTTON_FIVE_URL is not None:
@@ -309,13 +309,13 @@ class MirrorListener:
                             title='Dumb L⚡️ech Original',
                             content=mesg,
                         )["path"]
-                        buttons.buildbutton(f" O ", f"https://telegra.ph/{link}")
+                        buttons.buildbutton(f" Original ", f"https://telegra.ph/{link}")
                     elif is_url(mesg):
                         source_link = mesg
                         if source_link.startswith(("|", "pswd: ")):
                             pass
                         else:
-                            buttons.buildbutton(f" O ", source_link)
+                            buttons.buildbutton(f" Original ", source_link)
                     else:
                         pass
                 except Exception as e:
@@ -331,9 +331,9 @@ class MirrorListener:
                                 title='Dumb L⚡️ech Original',
                                 content=source_link,
                             )["path"]
-                            buttons.buildbutton(f" O ", f"https://telegra.ph/{link}")
+                            buttons.buildbutton(f" Original ", f"https://telegra.ph/{link}")
                         else:
-                            buttons.buildbutton(f" O ", source_link)
+                            buttons.buildbutton(f" Original ", source_link)
                 except Exception as e:
                     LOGGER.warning(e)
                     pass
