@@ -21,28 +21,28 @@ PAGE_NO = 1
 
 
 class MirrorStatus:
-    STATUS_UPLOADING = " 𝗙𝗶𝗹𝗲 𝗜𝘀 𝗦𝗲𝗻𝗱𝗶𝗻𝗴 𝗧𝗼 𝗬𝗼𝘂"
-    STATUS_DOWNLOADING = " 𝗙𝗶𝗹𝗲 𝗜𝘀 𝗦𝗲𝗻𝗱𝗶𝗻𝗴 𝗧𝗼 𝗦𝗲𝗿𝘃𝗲𝗿"
-    STATUS_CLONING = " 𝗚𝗲𝗻𝗲𝗿𝗮𝘁𝗶𝗻𝗴 𝗖𝗹𝗼𝗻𝗲 𝗙𝗜𝗹𝗲"
-    STATUS_WAITING = " 𝗤𝘂𝗲𝘂𝗲𝗱"
-    STATUS_FAILED = " 𝗢𝗼𝗽𝘀 𝗙𝗮𝗶𝗹𝗲𝗱 . 𝗖𝗹𝗲𝗮𝗻𝗶𝗻𝗴 𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱"
+    STATUS_UPLOADING = " 𝗥𝗲𝗰𝗲𝗶𝘃𝗶𝗻𝗴 𝗙𝗶𝗹𝗲 𝗙𝗿𝗼𝗺 𝗦𝗲𝗿𝘃𝗲𝗿"
+    STATUS_DOWNLOADING = " 𝗦𝗲𝗻𝗱𝗶𝗻𝗴 𝗙𝗶𝗹𝗲 𝗧𝗼 𝗦𝗲𝗿𝘃𝗲𝗿"
+    STATUS_CLONING = " 𝗖𝗹𝗼𝗻𝗶𝗻𝗴 𝗙𝗶𝗹𝗲 𝗙𝗿𝗼𝗺 𝗚𝗼𝗼𝗴𝗹𝗲 / 𝗔𝗽𝗽𝗗𝗿𝗶𝘃𝗲 !"
+    STATUS_WAITING = " 𝗪𝗮𝗶𝘁𝗶𝗻𝗴 𝗖𝗵𝗲𝗰𝗸𝗶𝗻𝗴 𝗙𝗶𝗹𝗲"
+    STATUS_FAILED = " 𝗢𝗼𝗽𝘀 𝗘𝗿𝗿𝗼𝗿"
     STATUS_PAUSE = " 𝗣𝗿𝗼𝗰𝗲𝘀𝘀𝗶𝗻𝗴 𝗣𝗮𝘂𝘀𝗲𝗱"
-    STATUS_ARCHIVING = "𝗚𝗲𝗻𝗲𝗿𝗮𝘁𝗶𝗻𝗴 𝘇𝗶𝗽 𝗙𝗶𝗹𝗲"
-    STATUS_EXTRACTING = " 𝗙𝗶𝗹𝗲 𝗘𝘅𝘁𝗿𝗮𝗰𝘁𝗶𝗻𝗴"
-    STATUS_SPLITTING = "𝗙𝗶𝗹𝗲 𝗦𝗽𝗹𝗶𝘁𝘁𝗶𝗻𝗴"
-    STATUS_CHECKING = " 𝗙𝗜𝗹𝗲 𝗦𝗲𝗮𝗿𝗰𝗵𝗶𝗻𝗴"
-    STATUS_SEEDING = " 𝗙𝗶𝗹𝗲 𝗦𝗲𝗲𝗱𝗶𝗻𝗴"
+    STATUS_ARCHIVING = " 𝗙𝗶𝗹𝗲 𝗜𝘀 𝗔𝗿𝗰𝗵𝗶𝘃𝗶𝗻𝗴 / 𝗭𝗶𝗽𝗶𝗻𝗴"
+    STATUS_EXTRACTING = " 𝗙𝗶𝗹𝗲 𝗜𝘀 𝗘𝘅𝘁𝗿𝗮𝗰𝘁𝗶𝗻𝗴 / 𝗨𝗻𝘇𝗶𝗽𝗶𝗻𝗴"
+    STATUS_SPLITTING = " 𝗙𝗶𝗹𝗲 𝗦𝗽𝗹𝗶𝘁𝘁𝗶𝗻𝗴"
+    STATUS_CHECKING = " 𝗦𝗲𝗮𝗿𝗰𝗵𝗶𝗻𝗴 𝗙𝗶𝗹𝗲"
+    STATUS_SEEDING = " 𝗦𝗲𝗲𝗱𝗶𝗻𝗴 𝗙𝗶𝗹𝗲"
 
 class EngineStatus:
-    STATUS_ARIA = "Based on Localhost Engine"
-    STATUS_GDRIVE = "Based on Google Engine"
-    STATUS_MEGA = "Based on Mega Engine"
-    STATUS_QB = "Based on Qbit Engine"
-    STATUS_TG = "Based on Cloudflare Engine"
-    STATUS_YT = "Based on Youtube Engine"
-    STATUS_EXT = "Based on Java Engine"
-    STATUS_SPLIT = "Based on Phython Engine"
-    STATUS_ZIP = "Based on Java Engine"
+    STATUS_ARIA = " Localhost Engine"
+    STATUS_GDRIVE = " Google Engine"
+    STATUS_MEGA = " Mega Engine"
+    STATUS_QB = " Qbit Engine"
+    STATUS_TG = " Cloudflare Engine"
+    STATUS_YT = " Youtube Engine"
+    STATUS_EXT = " Java Engine"
+    STATUS_SPLIT = " Phython Engine"
+    STATUS_ZIP = " Java Engine"
 
 SIZE_UNITS = ['B', 'KB', 'MB', 'GB', 'TB', 'PB']
 
@@ -74,7 +74,7 @@ def get_readable_file_size(size_in_bytes) -> str:
     try:
         return f'{round(size_in_bytes, 2)}{SIZE_UNITS[index]}'
     except IndexError:
-        return 'File too large'
+        return 'File too large Bro'
 
 def getDownloadByGid(gid):
     with download_dict_lock:
@@ -134,7 +134,7 @@ def get_readable_message():
                 globals()['PAGE_NO'] -= 1
         for index, download in enumerate(list(download_dict.values())[COUNT:], start=1):
             msg += f"<b> ● </b> <code>{escape(str(download.name()))}</code>"
-            msg += f"\n<b>Status - </b> <i>{download.status()}</i>\n<b> Worker - </b> {download.eng()}"
+            msg += f"\n<b>Status - </b> <i>{download.status()}</i>\n<b> Connected - </b> {download.eng()}"
             if download.status() not in [
                 MirrorStatus.STATUS_ARCHIVING,
                 MirrorStatus.STATUS_EXTRACTING,
@@ -164,11 +164,11 @@ def get_readable_message():
                 if download.message.chat.type != 'private':
                     try:
                         chatid = str(download.message.chat.id)[4:]
-                        msg += f'\n<b>Original - </b><a href="https://t.me/c/{chatid}/{download.message.message_id}">{download.message.from_user.first_name}</a> - <b>ID - </b> <code>{download.message.from_user.id}</code>'
+                        msg += f'\n<b>☂ </b><a href="https://t.me/c/{chatid}/{download.message.message_id}">{download.message.from_user.first_name}</a> <b>ID - </b> <code>{download.message.from_user.id}</code>'
                     except:
                         pass
                 else:
-                    msg += f'\n<b>Bro - </b> ️<code>{download.message.from_user.first_name}</code> - <b>ID - </b> <code>{download.message.from_user.id}</code>'
+                    msg += f'\n<b>Bro </b> ️<code>{download.message.from_user.first_name}</code> <b>ID - </b> <code>{download.message.from_user.id}</code>'
                 msg += f"\n<b>Bot Rest - </b><code>/{BotCommands.CancelMirror} {download.gid()}</code>"
             elif download.status() == MirrorStatus.STATUS_SEEDING:
                 msg += f"\n<b>Size - </b>{download.size()}"
@@ -342,11 +342,11 @@ def bot_sys_stats():
        if stats.status() == MirrorStatus.STATUS_SPLITTING:
                 num_split += 1
     stats = f"""
-  - {currentTime}\n
+    {currentTime}\n
 CPU - {cpu}  || RAM - {mem_p} \n
 USED - {used} || FREE - {free}
 SENT - {sent} || RECV - {recv}\n
-ONGOING TASKS 
+Developer Jackssmit
 SD - {num_active} ⥃ RC - {num_upload} ⥃ SPLIT - {num_split}
 ZIP - {num_archi} ⥃ UNZIP - {num_extract} ⥃ TOTAL - {tasks} 
 """
