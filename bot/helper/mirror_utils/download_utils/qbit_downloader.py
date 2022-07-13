@@ -46,7 +46,7 @@ class QbDownloader:
                         if len(tor_info) > 0:
                             break
                         elif time() - self.__stalled_time >= 12:
-                            msg = "This Torrent already added or not a torrent. If something wrong please report."
+                            msg = "Check This File - Maybe Already Generated - #2 maybe Torrent Is Zombie"
                             sendMessage(msg, self.__listener.bot, self.__listener.message)
                             self.client.auth_log_out()
                             return
@@ -110,7 +110,7 @@ class QbDownloader:
             if tor_info.state == "metaDL":
                 self.__stalled_time = time()
                 if TORRENT_TIMEOUT is not None and time() - tor_info.added_on >= TORRENT_TIMEOUT:
-                    self.__onDownloadError("Dead Torrent!")
+                    self.__onDownloadError("Zombie Torrent - Run !")
             elif tor_info.state == "downloading":
                 self.__stalled_time = time()
                 if not self.__dupChecked and STOP_DUPLICATE and ospath.isdir(f'{self.__path}') and not self.__listener.isLeech:
@@ -129,7 +129,7 @@ class QbDownloader:
                         qbmsg, button = GoogleDriveHelper().drive_list(qbname, True)
                         if qbmsg:
                             self.__onDownloadError("File/Folder is already available in Drive.")
-                            sendMarkup("Here are the search results:", self.__listener.bot, self.__listener.message, button)
+                            sendMarkup("Bro Search results - ", self.__listener.bot, self.__listener.message, button)
                     self.__dupChecked = True
                 if not self.__sizeChecked:
                     size = tor_info.size
@@ -163,7 +163,7 @@ class QbDownloader:
                     self.client.torrents_recheck(torrent_hashes=self.ext_hash)
                     self.__rechecked = True
                 elif TORRENT_TIMEOUT is not None and time() - self.__stalled_time >= TORRENT_TIMEOUT:
-                    self.__onDownloadError("Dead Torrent!")
+                    self.__onDownloadError("Zombie Torrent - Run !")
             elif tor_info.state == "missingFiles":
                 self.client.torrents_recheck(torrent_hashes=self.ext_hash)
             elif tor_info.state == "error":
@@ -213,7 +213,7 @@ class QbDownloader:
             LOGGER.info(f"Cancelling Seed: {self.__name}")
             self.client.torrents_pause(torrent_hashes=self.ext_hash)
         else:
-            self.__onDownloadError('Download stopped by user!')
+            self.__onDownloadError('Bro Your Processing Is Stop !')
 
 def get_confirm(update, context):
     query = update.callback_query
@@ -222,10 +222,10 @@ def get_confirm(update, context):
     data = data.split(" ")
     qbdl = getDownloadByGid(data[2])
     if not qbdl:
-        query.answer(text="This task has been cancelled!", show_alert=True)
+        query.answer(text="Man This task has been cancelled!", show_alert=True)
         query.message.delete()
     elif user_id != qbdl.listener().message.from_user.id:
-        query.answer(text="This task is not for you!", show_alert=True)
+        query.answer(text="Man This task is not for you!", show_alert=True)
     elif data[1] == "pin":
         query.answer(text=data[3], show_alert=True)
     elif data[1] == "done":
