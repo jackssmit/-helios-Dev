@@ -60,9 +60,9 @@ def getHerokuDetails(h_api_key, h_app_name):
         account_quota = result["account_quota"]
         quota_used = result["quota_used"]
         quota_remain = account_quota - quota_used
-        stats = f"<b>Dyno - </b> {get_readable_time(account_quota)}\n"
-        stats += f"<b>Eated - </b> {get_readable_time(quota_used)} - "
-        stats += f"<b>Left - </b> {get_readable_time(quota_remain)}\n"
+        stats = f"<b>Virtual Windows 11 - </b> {get_readable_time(account_quota)}\n"
+        stats += f"<b>Activated - </b> {get_readable_time(quota_used)} - "
+        stats += f"<b>Validity - </b> {get_readable_time(quota_remain)}\n"
         # App Quota
         AppQuotaUsed = 0
         OtherAppsUsage = 0
@@ -81,9 +81,9 @@ def getHerokuDetails(h_api_key, h_app_name):
                     LOGGER.error("error when adding other dyno")
                     LOGGER.error(t)
                     pass
-        LOGGER.info(f"This App: {str(app.name)}")
-        stats += f"<b>This App:</b> {get_readable_time(AppQuotaUsed)} | "
-        stats += f"<b>Other Apps:</b> {get_readable_time(OtherAppsUsage)}"
+        LOGGER.info(f"Linux - {str(app.name)}")
+        stats += f"<b>Virtual Linux - </b> {get_readable_time(AppQuotaUsed)} | "
+        stats += f"<b>Virtual Os </b> {get_readable_time(OtherAppsUsage)}"
         return stats
     except Exception as error:
         LOGGER.error(error)
