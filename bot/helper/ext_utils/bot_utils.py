@@ -117,9 +117,9 @@ def get_progress_bar_string(status):
     p = 0 if total == 0 else round(completed * 100 / total)
     p = min(max(p, 0), 100)
     cFull = p // 8
-    p_str = '◕' * cFull
-    p_str += '◔' * (12 - cFull)
-    p_str = f"[{p_str}]"
+    p_str = '●' * cFull
+    p_str += '○' * (12 - cFull)
+    p_str = f" {p_str} "
     return p_str
 
 def get_readable_message():
@@ -133,8 +133,8 @@ def get_readable_message():
                 globals()['COUNT'] -= STATUS_LIMIT
                 globals()['PAGE_NO'] -= 1
         for index, download in enumerate(list(download_dict.values())[COUNT:], start=1):
-            msg += f"<b>File - </b> <code>{escape(str(download.name()))}</code>"
-            msg += f"\n<b>Status - </b> <i>{download.status()}</i>\n<b>Ai - </b> {download.eng()}"
+            msg += f"<b> ● </b> <code>{escape(str(download.name()))}</code>"
+            msg += f"\n<b>Status - </b> <i>{download.status()}</i>\n<b> Worker - </b> {download.eng()}"
             if download.status() not in [
                 MirrorStatus.STATUS_ARCHIVING,
                 MirrorStatus.STATUS_EXTRACTING,
@@ -148,27 +148,27 @@ def get_readable_message():
                     msg += f"\n<b>Receiving - </b> {get_readable_file_size(download.processed_bytes())} of {download.size()}"
                 else:
                     msg += f"\n<b>Sending - </b> {get_readable_file_size(download.processed_bytes())} of {download.size()}"
-                msg += f"\n<b>Pro - </b> {download.speed()} | <b>ETA:</b> {download.eta()}"
+                msg += f"\n<b>Pro - </b> {download.speed()} - <b>ETA - </b> {download.eta()}"
                 msg += f"\n<b>Elapsed - </b>{get_readable_time(time() - download.message.date.timestamp())}"
                 msg += f"\n<b>Ai - </b> {download.eng()}"
                 try:
                     msg += f"\n<b>SS - </b> {download.aria_download().num_seeders}" \
-                           f" | <b>PS - </b> {download.aria_download().connections}"
+                           f" - <b>PS - </b> {download.aria_download().connections}"
                 except:
                     pass
                 try:
                     msg += f"\n<b>SS - </b> {download.torrent_info().num_seeds}" \
-                           f" | <b>LS - </b> {download.torrent_info().num_leechs}"
+                           f" - <b>LS - </b> {download.torrent_info().num_leechs}"
                 except:
                     pass
                 if download.message.chat.type != 'private':
                     try:
                         chatid = str(download.message.chat.id)[4:]
-                        msg += f'\n<b>Original - </b><a href="https://t.me/c/{chatid}/{download.message.message_id}">{download.message.from_user.first_name}</a> | <b>Id :</b> <code>{download.message.from_user.id}</code>'
+                        msg += f'\n<b>Original - </b><a href="https://t.me/c/{chatid}/{download.message.message_id}">{download.message.from_user.first_name}</a> - <b>ID - </b> <code>{download.message.from_user.id}</code>'
                     except:
                         pass
                 else:
-                    msg += f'\n<b>Bro - </b> ️<code>{download.message.from_user.first_name}</code> - <b>Id:</b> <code>{download.message.from_user.id}</code>'
+                    msg += f'\n<b>Bro - </b> ️<code>{download.message.from_user.first_name}</code> - <b>ID - </b> <code>{download.message.from_user.id}</code>'
                 msg += f"\n<b>Bot Rest - </b><code>/{BotCommands.CancelMirror} {download.gid()}</code>"
             elif download.status() == MirrorStatus.STATUS_SEEDING:
                 msg += f"\n<b>Size - </b>{download.size()}"
@@ -199,7 +199,7 @@ def get_readable_message():
                     upspeed_bytes += float(spd.split('K')[0]) * 1024
                 elif 'MB/s' in spd:
                     upspeed_bytes += float(spd.split('M')[0]) * 1048576
-        bmsg += f"\n<b>SD - </b> {get_readable_file_size(dlspeed_bytes)}/s ⚡️ <b>RC - </b> {get_readable_file_size(upspeed_bytes)}/s"
+        bmsg += f"\n<b>SD ⥃ </b> {get_readable_file_size(dlspeed_bytes)}/s ⚡️ <b>RC ⥃ </b> {get_readable_file_size(upspeed_bytes)}/s"
         buttons = ButtonMaker()
         buttons.sbutton("Bot - Performance", str(FOUR))
         sbutton = InlineKeyboardMarkup(buttons.build_menu(1))
