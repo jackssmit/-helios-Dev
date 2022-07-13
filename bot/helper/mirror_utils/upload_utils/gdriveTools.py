@@ -353,39 +353,39 @@ class GoogleDriveHelper:
                     LOGGER.info("Deleting cloned data from Drive...")
                     self.deletefile(durl)
                     return "Bro clone has been stopped and cloned data has been deleted!", "cancelled"
-                msg += f'<b>File - </b><code>{meta.get("name")}</code>'
+                msg += f'<b>◉ - </b><code>{meta.get("name")}</code>'
                 msg += f'\n\n<b>Size - </b>{get_readable_file_size(self.transferred_size)}'
                 msg += '\n\n<b>Type - </b>Folder'
                 msg += f'\n<b>SubFolders - </b>{self.__total_folders}'
                 msg += f'\n<b>Files - </b>{self.__total_files}'
                 buttons = ButtonMaker()
                 durl = short_url(durl)
-                buttons.buildbutton(" G ", durl)
+                buttons.buildbutton(" Google ", durl)
                 if INDEX_URL is not None:
                     url_path = rquote(f'{meta.get("name")}', safe='')
                     url = f'{INDEX_URL}/{url_path}/'
                     url = short_url(url)
-                    buttons.buildbutton(" C-F ", url)
+                    buttons.buildbutton(" Cloudflare ", url)
             else:
                 file = self.__copyFile(meta.get('id'), parent_id)
-                msg += f'<b>File - </b><code>{file.get("name")}</code>'
+                msg += f'<b>◉ - </b><code>{file.get("name")}</code>'
                 durl = self.__G_DRIVE_BASE_DOWNLOAD_URL.format(file.get("id"))
                 buttons = ButtonMaker()
                 durl = short_url(durl)
-                buttons.buildbutton(" G ", durl)
+                buttons.buildbutton("Google", durl)
                 if mime_type is None:
-                    mime_type = 'File'
+                    mime_type = '◉'
                 msg += f'\n\n<b>Size - </b>{get_readable_file_size(int(meta.get("size", 0)))}'
                 msg += f'\n\n<b>Type - </b>{mime_type}'
                 if INDEX_URL is not None:
                     url_path = rquote(f'{file.get("name")}', safe='')
                     url = f'{INDEX_URL}/{url_path}'
                     url = short_url(url)
-                    buttons.buildbutton(" C-F ", url)
+                    buttons.buildbutton(" Cloudflare ", url)
                     if VIEW_LINK:
                         urls = f'{INDEX_URL}/{url_path}?a=view'
                         urls = short_url(urls)
-                        buttons.buildbutton(" C ", urls)
+                        buttons.buildbutton(" Cloud ", urls)
             if BUTTON_FOUR_NAME is not None and BUTTON_FOUR_URL is not None:
                 buttons.buildbutton(f"{BUTTON_FOUR_NAME}", f"{BUTTON_FOUR_URL}")
             if BUTTON_FIVE_NAME is not None and BUTTON_FIVE_URL is not None:
@@ -393,7 +393,7 @@ class GoogleDriveHelper:
             if BUTTON_SIX_NAME is not None and BUTTON_SIX_URL is not None:
                 buttons.buildbutton(f"{BUTTON_SIX_NAME}", f"{BUTTON_SIX_URL}")
             if SOURCE_LINK is True:
-                buttons.buildbutton(f" O ", link)
+                buttons.buildbutton(f" Original ", link)
         except Exception as err:
             if isinstance(err, RetryError):
                 LOGGER.info(f"Total Attempts: {err.last_attempt.attempt_number}")
@@ -630,7 +630,7 @@ class GoogleDriveHelper:
                     furl = f"https://drive.google.com/drive/folders/{file.get('id')}"
                     msg += f"📁 <code>{file.get('name')}<br>(folder)</code><br>"
                     furl = short_url(furl)
-                    msg += f"<b><a href={furl}> G </a></b>"
+                    msg += f"<b><a href={furl}> Google </a></b>"
                     if INDEX_URLS[index] is not None:
                         if isRecur:
                             url_path = "/".join([rquote(n, safe='') for n in self.__get_recursive_list(file, parent_id)])
@@ -638,7 +638,7 @@ class GoogleDriveHelper:
                             url_path = rquote(f'{file.get("name")}', safe='')
                         url = f'{INDEX_URLS[index]}/{url_path}/'
                         url = short_url(url)
-                        msg += f' <b>| <a href="{url}"> C-F </a></b>'
+                        msg += f' <b>| <a href="{url}"> Cloudflare </a></b>'
                 elif mime_type == 'application/vnd.google-apps.shortcut':
                     msg += f"⁍<a href='https://drive.google.com/drive/folders/{file.get('id')}'>{file.get('name')}" \
                         f"</a> (shortcut)"
@@ -647,7 +647,7 @@ class GoogleDriveHelper:
                     furl = f"https://drive.google.com/uc?id={file.get('id')}&export=download"
                     msg += f"📄 <code>{file.get('name')}<br>({get_readable_file_size(int(file.get('size', 0)))})</code><br>"
                     furl = short_url(furl)
-                    msg += f"<b><a href={furl}> G </a></b>"
+                    msg += f"<b><a href={furl}> Google </a></b>"
                     if INDEX_URLS[index] is not None:
                         if isRecur:
                             url_path = "/".join(
@@ -659,11 +659,11 @@ class GoogleDriveHelper:
                             url_path = rquote(f'{file.get("name")}')
                         url = f'{INDEX_URLS[index]}/{url_path}'
                         url = short_url(url)
-                        msg += f' <b>| <a href="{url}"> C-F </a></b>'
+                        msg += f' <b>| <a href="{url}"> Cloudflare </a></b>'
                         if VIEW_LINK:
                             urls = f'{INDEX_URLS[index]}/{url_path}?a=view'
                             urls = short_url(urls)
-                            msg += f' <b>| <a href="{urls}"> C </a></b>'
+                            msg += f' <b>| <a href="{urls}"> Cloud </a></b>'
                 msg += '<br><br>'
                 contents_count += 1
                 if len(msg.encode('utf-8')) > 39000:
@@ -709,12 +709,12 @@ class GoogleDriveHelper:
             mime_type = meta.get('mimeType')
             if mime_type == self.__G_DRIVE_DIR_MIME_TYPE:
                 self.__gDrive_directory(meta)
-                msg += f'<b>File - </b><code>{name}</code>'
+                msg += f'<b>◉ - </b><code>{name}</code>'
                 msg += f'\n\n<b>Size - </b>{get_readable_file_size(self.__total_bytes)}'
                 msg += '\n\n<b>Type - </b>Folder'
                 msg += f'\n<b>SubFolders - </b>{self.__total_folders}'
             else:
-                msg += f'<b>File - </b><code>{name}</code>'
+                msg += f'<b>◉ - </b><code>{name}</code>'
                 if mime_type is None:
                     mime_type = 'File'
                 self.__total_files += 1
