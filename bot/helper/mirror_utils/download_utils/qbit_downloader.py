@@ -128,7 +128,7 @@ class QbDownloader:
                     if qbname is not None:
                         qbmsg, button = GoogleDriveHelper().drive_list(qbname, True)
                         if qbmsg:
-                            self.__onDownloadError("File/Folder is already available in Drive.")
+                            self.__onDownloadError("Bro File is Already Generated Man!")
                             sendMarkup("Bro Search results - ", self.__listener.bot, self.__listener.message, button)
                     self.__dupChecked = True
                 if not self.__sizeChecked:
