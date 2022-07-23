@@ -31,7 +31,6 @@ class MirrorStatus:
     STATUS_EXTRACTING = " 𝗙𝗶𝗹𝗲 𝗜𝘀 𝗘𝘅𝘁𝗿𝗮𝗰𝘁𝗶𝗻𝗴 / 𝗨𝗻𝘇𝗶𝗽𝗶𝗻𝗴"
     STATUS_SPLITTING = " 𝗙𝗶𝗹𝗲 𝗦𝗽𝗹𝗶𝘁𝘁𝗶𝗻𝗴"
     STATUS_CHECKING = " 𝗦𝗲𝗮𝗿𝗰𝗵𝗶𝗻𝗴 𝗙𝗶𝗹𝗲"
-    STATUS_SEEDING = " 𝗦𝗲𝗲𝗱𝗶𝗻𝗴 𝗙𝗶𝗹𝗲"
 
 class EngineStatus:
     STATUS_ARIA = "Based on Localhost Engine"
@@ -97,15 +96,12 @@ def getAllDownload(req_status: str):
         for dl in list(download_dict.values()):
             status = dl.status()
             if status not in [MirrorStatus.STATUS_ARCHIVING, MirrorStatus.STATUS_EXTRACTING, MirrorStatus.STATUS_SPLITTING] and dl:
-                if req_status == 'down' and (status not in [MirrorStatus.STATUS_SEEDING,
-                                                            MirrorStatus.STATUS_UPLOADING,
+                if req_status == 'down' and (status not in [MirrorStatus.STATUS_UPLOADING,
                                                             MirrorStatus.STATUS_CLONING]):
                     return dl
                 elif req_status == 'up' and status == MirrorStatus.STATUS_UPLOADING:
                     return dl
                 elif req_status == 'clone' and status == MirrorStatus.STATUS_CLONING:
-                    return dl
-                elif req_status == 'seed' and status == MirrorStatus.STATUS_SEEDING:
                     return dl
                 elif req_status == 'all':
                     return dl
@@ -139,7 +135,6 @@ def get_readable_message():
                 MirrorStatus.STATUS_ARCHIVING,
                 MirrorStatus.STATUS_EXTRACTING,
                 MirrorStatus.STATUS_SPLITTING,
-                MirrorStatus.STATUS_SEEDING,
             ]:
                 msg += f"\n{get_progress_bar_string(download)} {download.progress()}"
                 if download.status() == MirrorStatus.STATUS_CLONING:
@@ -170,15 +165,6 @@ def get_readable_message():
                 else:
                     msg += f'\n<b>Bro </b> ️<code>{download.message.from_user.first_name}</code> <b>ID - </b> <code>{download.message.from_user.id}</code>'
                 msg += f"\n<b>Bot Rest - </b><code>/{BotCommands.CancelMirror} {download.gid()}</code>"
-            elif download.status() == MirrorStatus.STATUS_SEEDING:
-                msg += f"\n<b>Size - </b>{download.size()}"
-                msg += f"\n<b>Pro - </b>{get_readable_file_size(download.torrent_info().upspeed)}/s"
-                msg += f"\n<b>Ai - </b> {download.eng()}"
-                msg += f" - <b>Receiving - </b>{get_readable_file_size(download.torrent_info().uploaded)}"
-                msg += f"\n<b>Ratio - </b>{round(download.torrent_info().ratio, 3)}"
-                msg += f" - <b>Time - </b>{get_readable_time(download.torrent_info().seeding_time)}"
-                msg += f"\n<code>/{BotCommands.CancelMirror} {download.gid()}</code>"
-            else:
                 msg += f"\n<b>Size - </b>{download.size()}"
             msg += "\n\n"
             if STATUS_LIMIT is not None and index == STATUS_LIMIT:
