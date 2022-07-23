@@ -286,7 +286,6 @@ class MirrorListener:
                     share_url += '/'
                     buttons.buildbutton(" Cloudflare ", share_url)
                 else:
-                    share_url = short_url(share_url)
                     buttons.buildbutton(" Cloudflare ", share_url)
                     if VIEW_LINK:
                         share_urls = f'{INDEX_URL}/{url_path}?a=view'
